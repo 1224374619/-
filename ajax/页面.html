@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        body{
+            width: 900px;
+            height: 300px;
+            margin-left: 100px;
+            margin-top: 100px;
+            text-align: left;
+        }
+        #div1{
+            width: 100px;
+            height: 300px;
+            float: left;
+        }
+        ul li{
+            margin-top: 30px;
+            list-style: none;
+            text-align: center;
+            width: 100px;
+            height:30px;
+            line-height: 30px;
+        }
+        #div2{
+              width: 500px;
+              height: 300px;
+              float: right;
+            position: absolute;
+            /*border: 1px solid blue;*/
+            left: 400px;
+            display: none;
+          }
+        #div2 div{
+            margin-top: 40px;
+            text-align: left;
+        }
+        #div22{
+            width: 500px;
+            height: 50px;
+            background-color: #3071a9;
+            line-height: 50px;
+            text-align: left;
+        }
+        #div21{
+            width: 500px;
+            height: 50px;
+            background-color:#e7e7e7;
+            line-height: 50px;
+            color: #3071a9;
+            text-align: left;
+        }
+        #div3{
+            width: 500px;
+            height: 300px;
+            float: right;
+            position: absolute;
+            /*border: 1px solid red;*/
+            left: 400px;
+            display: none;
+        }
+        #div3 span{
+            margin-top: 40px;
+            text-align: left;
+        }
+        #div32{
+            width: 500px;
+            height: 50px;
+            background-color: #3071a9;
+            line-height: 50px;
+            text-align: left;
+        }
+        #div31{
+            width: 500px;
+            height: 50px;
+            background-color:#e7e7e7;
+            line-height: 50px;
+            color: #3071a9;
+            text-align: left;
+        }
+    </style>
+</head>
+<body>
+<div id="div1">
+    <ul id="div11">
+        <li v-move="0">首页</li>
+        <li v-move="1">菜单1</li>
+        <li v-move="2">菜单2</li>
+        <li v-move="3">菜单3</li>
+        <li v-move="4">菜单4</li>
+    </ul>
+</div>
+<div id="div0">
+<div id="div2">
+    <ul>
+        <li id="div21">周考/首页</li>
+        <li id="div22">首页</li>
+        <li ><h2>我是首页内容</h2></li>
+    </ul>
+</div>
+<div id="div3">
+    <ul>
+        <li id="div31">周考/首页</li>
+        <li id="div32">菜单1</li>
+        <li ><h2>我是菜单1内容</h2></li>
+    </ul>
+</div>
+</div>
+</body>
+</html>
+<script type="text/javascript" src="js/vue1.js"></script>
+<script type="text/javascript" src="lib/jquery-1.7.2.js"></script>
+<script type="text/javascript" src="lib/bootstrap.js"></script>
+<script>
+    Vue.directive('move',function(a) {
+        var oDiv = this.el;
+        oDiv.onmousemove = function () {
+            var ml=$(this).index();//获取oDiv 下标
+            $(this).css("background-color","blue").siblings().css("background-color","white")
+            $('#div0>div').eq(a).show().siblings().hide();
+        }
+    })
+    new Vue({
+        el:'body'
+    })
+</script>

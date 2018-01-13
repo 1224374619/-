@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="zh">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>Document</title>
+    <style>
+        ul li{
+            list-style: none
+        }
+    </style>
+</head>
+
+<body>
+    <input type="button" id="btn" value="提交" />
+    <ul id="ul1"></ul>
+</body>
+<script>
+    var btn = document.getElementById("btn")
+    btn.onclick = function() {
+        var xhr = new XMLHttpRequest(); 
+        xhr.open('GET', 'php.php', true);   
+        xhr.send();
+        xhr.onreadystatechange = function() { 
+            if (xhr.readyState == 4) {
+                if (xhr.status == 200) {
+                    var date = JSON.parse(xhr.responseText);
+                    var oul = document.getElementById("ul1");
+                    var html = '';
+                    for (var i = 0; i < date.length; i++) {
+                        html += '<li>' + date[i].title + '[<span>' + date[i].date + '</span>]</li>'
+                        oul.innerHTML = html
+                    }
+                }
+                else {
+                    alert("出错了" + xhr.status);
+                }
+            }
+        }
+    }
+</script>
+
+</html>
